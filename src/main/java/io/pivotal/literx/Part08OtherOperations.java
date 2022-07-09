@@ -28,16 +28,14 @@ public class Part08OtherOperations {
 
     // Return the mono which returns its value faster
     Mono<User> useFastestMono(Mono<User> mono1, Mono<User> mono2) {
-        return mono1
-                .mergeWith(mono2)
-                .next();
+        return Mono.first(mono1, mono2);
     }
 
 //========================================================================================
 
     // TODO: Return the flux which returns the first value faster
     Flux<User> useFastestFlux(Flux<User> flux1, Flux<User> flux2) {
-        return flux1.mergeWith(flux2).take(1);
+        return Flux.first(flux1, flux2);
     }
 
 //========================================================================================
